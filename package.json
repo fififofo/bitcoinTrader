@@ -18,13 +18,16 @@
         "babel-preset-react": "^6.1.18",
         "chai": "^3.5.0",
         "chai-jquery": "^2.0.0",
+        "css-loader": "0.23.1",
         "jquery": "^2.2.1",
         "jsdom": "^8.1.0",
         "mocha": "^2.4.5",
         "node-sass": "^4.9.0",
         "sass-loader": "^7.0.1",
+        "style-loader": "0.13.1",
         "webpack": "^1.15.0",
-        "webpack-dev-server": "^1.14.0"
+        "webpack-combine-loaders": "2.0.0",
+        "webpack-dev-server": "^1.14.1"
     },
     "dependencies": {
         "babel-preset-stage-1": "^6.1.18",

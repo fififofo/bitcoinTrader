@@ -1,3 +1,5 @@
+var combineLoaders = require('webpack-combine-loaders');
+
 module.exports = {
     entry: ['./src/index.js'],
     output: {
@@ -12,10 +14,20 @@ module.exports = {
             query: {
                 presets: ['react', 'es2015', 'stage-1']
             }
-        }],
-    },
-    resolve: {
-        extensions: ['', '.js', '.jsx']
+        },
+        {
+            test: /\.css$/,
+            loader: combineLoaders([{
+                loader: 'style-loader'
+            },
+            {
+                loader: 'css-loader',
+                query: {
+                    modules: true,
+                    localIdentName: '[name]__[local]___[hash:base64:5]'
+                }
+            }])
+        }]
     },
     devServer: {
         historyApiFallback: true,
