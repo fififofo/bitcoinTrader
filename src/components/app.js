@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
-import styles from './app.css';
+import CurrencyIndicator from './CurrencyIndicator.js';
+
+// Styles
+import styles from './App.css';
 
 export default class App extends Component {
+
     render() {
         return (
-        	<div className={styles.test}>
-        		Hello There
-        		<span className={styles.childtest}>Just a test</span>
+        	<div className={styles.container}>
+        		<h3 className={styles.header}>Account Balance</h3>
+
+        		<CurrencyIndicator />
         	</div>
         );
     }

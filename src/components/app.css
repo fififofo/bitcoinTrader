@@ -1,7 +1,22 @@
-.childtest{
-	color: red;
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
+
+.container{
+	padding: 10px 40px 40px 40px;
+	font-family: 'Source Sans Pro', Arial, Helvetica, sans-serif;
+	background-color: #eee;
+	width: 400px;
+	font-size: 15px;
 }
 
-.test{
-	color:green;
+.header{
+	font-size: 13px;
+	font-weight: normal;
+}
+
+.currency-indicator{
+
+}
+
+.currency-amount{
+	font-size: ;
 }
