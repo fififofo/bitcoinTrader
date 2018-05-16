@@ -6,6 +6,14 @@ import styles from './App.css';
 
 export default class App extends Component {
 
+	constructor(props) {
+		super(props);
+	}
+
+	onTradeClick(event){
+		console.log('Button pressed!');
+	}
+
     render() {
         return (
         	<div className={styles.container}>
@@ -23,7 +31,7 @@ export default class App extends Component {
         		<label className={styles.coinTrade}>BTC</label>
         		<p className={styles.coinTrade}>Display Quote</p>
 
-        		<input type="button" value="Trade" />
+        		<input type="button" value="Trade" onClick ={this.onTradeClick.bind(this)} />
 
         	</div>
         );
