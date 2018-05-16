@@ -1,0 +1,16 @@
+
+.currencyIndicator{
+	padding: 0 40px;
+}
+
+.currencyName, .currencyAmount{
+	display: inline;
+}
+
+.currencyAmount{
+	margin-left:20px;
+}
+
+.usIndicator, .btcIndicator{
+	display:block;
+}

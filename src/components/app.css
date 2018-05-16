@@ -4,19 +4,45 @@
 	padding: 10px 40px 40px 40px;
 	font-family: 'Source Sans Pro', Arial, Helvetica, sans-serif;
 	background-color: #eee;
-	width: 400px;
+	width: 220px;
 	font-size: 15px;
 }
 
-.header{
+.header, .text{
 	font-size: 13px;
 	font-weight: normal;
+	margin-left: 20px;
+	display: block;
 }
 
-.currency-indicator{
-
+.coinTrade{
+	display:block;
+	padding: 10px;
+	border: 1px solid #999;
 }
 
-.currency-amount{
-	font-size: ;
+input[type=text]{
+	font-family: 'Source Sans Pro', Arial, Helvetica, sans-serif;
+	background: none;
+    border: 1px solid #999;
+    display: block;
+    width: inherit;
+    font-size: 15px;
+    padding: 10px;
+    box-sizing: border-box;
+    margin-top:1em;
+}
+
+input[type=button]{
+	background: #2838d0;
+    border: none;
+    display: block;
+    font-size: 15px;
+    padding: 25px 10px;
+    margin: 0 -10px;
+    letter-spacing: 2px;
+    color: white;
+    width: 100%;
+    box-sizing: content-box;
+
 }

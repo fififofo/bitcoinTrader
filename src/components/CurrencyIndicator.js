@@ -7,9 +7,18 @@ export class CurrencyIndicator extends React.Component {
 
     render() {
         return (
-        	<div>
-        		<div> USD:</div>
-        		<div> BTC:</div>
+        	<div className={styles.currencyIndicator}>
+
+        		<div className={styles.usdindicator}>
+        			<div className={styles.currencyName}>USD</div>
+        			<div className={styles.currencyAmount}>00</div>
+        		</div>
+
+        		<div className={styles.btcIndicator}>
+        			<div className={styles.currencyName}>BTC</div>
+        			<div className={styles.currencyAmount}>00000000</div>
+        		</div>
+
         	</div>
         );
     }
