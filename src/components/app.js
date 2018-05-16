@@ -8,6 +8,21 @@ export default class App extends Component {
 
 	constructor(props) {
 		super(props);
+
+		this.state = {
+			usdValue: 156.12,
+			btcValue: 0.00000000
+		}
+	}
+
+	renderCurrencyIndicator(){
+
+		const currencyProps = {
+			usdValue: this.state.usdValue,
+			btcValue: this.state.btcValue
+		}
+
+		return <CurrencyIndicator {...currencyProps}/>
 	}
 
 	onTradeClick(event){
@@ -19,7 +34,7 @@ export default class App extends Component {
         	<div className={styles.container}>
         		<h3 className={styles.text}>Account Balance</h3>
 
-        		<CurrencyIndicator />
+        		{ this.renderCurrencyIndicator() }
 
         		<h2 className={styles.text}>Trade</h2>
 
