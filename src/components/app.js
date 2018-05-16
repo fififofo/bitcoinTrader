@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import CurrencyIndicator from './CurrencyIndicator';
+import { connect } from 'react-redux';
+import { fetchBitcoinData } from '../actions/action_bitcoin'
 
 // Styles
 import styles from './App.css';
 
-export default class App extends Component {
+export class App extends Component {
 
 	constructor(props) {
 		super(props);
@@ -13,6 +15,10 @@ export default class App extends Component {
 			usdValue: 156.12,
 			btcValue: 0.00000000
 		}
+	}
+
+	componentDidMount(){
+		fetchBitcoinData();
 	}
 
 	renderCurrencyIndicator(){
@@ -30,6 +36,7 @@ export default class App extends Component {
 	}
 
     render() {
+    	console.log('value prop ', this.props.btcValueProp);
         return (
         	<div className={styles.container}>
         		<h3 className={styles.text}>Account Balance</h3>
@@ -39,7 +46,7 @@ export default class App extends Component {
         		<h2 className={styles.text}>Trade</h2>
 
         		<label className={styles.coinTrade}>USD</label>
-        		<input type="text" placeholder='Enter your amount' />
+        		<input type="text" placeholder='Enter your amount'/>
 
         		<p className={styles.text}>For</p>
 
@@ -52,3 +59,11 @@ export default class App extends Component {
         );
     }
 }
+
+const mapStateToProps = (state) => {
+	return {
+		bitcoin: 123 //state.bitcoin
+	};
+}
+
+export default connect(mapStateToProps)(App)

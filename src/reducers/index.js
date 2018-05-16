@@ -1,7 +1,8 @@
 import { combineReducers } from 'redux';
+import bitcoinReducer from './reducer_bitcoin';
 
 const rootReducer = combineReducers({
-  state: (state = {}) => state
+  bitcoin: bitcoinReducer
 });
 
 export default rootReducer;
