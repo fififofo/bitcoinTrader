@@ -16,7 +16,7 @@ export function makeBitcoinDataCall(){
 // axios.get(`https://api.bitfinex.com/v1/pubticker/btcusd`)
 // 	.then(res => {
 // 		console.log(res.data);
-// 		return res.data;
+// 		return fetch_bitcoinData(res.data);
 //   	})
 //   	.catch( (error) => {
 //   		console.log( error.toString() );
