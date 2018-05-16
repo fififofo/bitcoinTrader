@@ -1,15 +1,15 @@
 
-import { UPDATE_BITCOIN_VALUE } from '../actions/action_bitcoin'
+import { UPDATE_BITCOIN_VALUE } from '../actions/action_bitcoin';
 
-export default function( state = {}, action) {
+export default function( state = { data: {} }, action) {
 
 	switch (action.type){
+
 		case UPDATE_BITCOIN_VALUE:
 
 		if (state instanceof Object){
 			return Object.assign({}, state, { data: action.data })
 		}
-
 		break;
 
 		case '@@redux/INIT':
@@ -19,4 +19,5 @@ export default function( state = {}, action) {
 	}
 
 	return state;
+
 }

@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import CurrencyIndicator from './CurrencyIndicator';
 import { connect } from 'react-redux';
-import { fetchBitcoinData } from '../actions/action_bitcoin'
+import { makeBitcoinDataCall } from '../actions/action_bitcoin';
+import { bindActionCreators } from 'redux';
 
 // Styles
 import styles from './App.css';
 
-export class App extends Component {
+class App extends Component {
 
 	constructor(props) {
 		super(props);
@@ -18,7 +19,8 @@ export class App extends Component {
 	}
 
 	componentDidMount(){
-		fetchBitcoinData();
+		this.props.makeBitcoinDataCall(this.props.bitcoin);
+		//makeBitcoinDataCall();
 	}
 
 	renderCurrencyIndicator(){
@@ -62,8 +64,15 @@ export class App extends Component {
 
 const mapStateToProps = (state) => {
 	return {
-		bitcoin: 123 //state.bitcoin
+		bitcoin: state.bitcoin
 	};
 }
 
-export default connect(mapStateToProps)(App)
+const mapDispatchToProps = (dispatch) => {
+	return bindActionCreators(
+		{ makeBitcoinDataCall: makeBitcoinDataCall },
+		dispatch
+	);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)
