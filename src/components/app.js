@@ -20,7 +20,7 @@ class App extends Component {
 
 	componentDidMount(){
 		this.props.makeBitcoinDataCall(this.props.bitcoin);
-		//makeBitcoinDataCall();
+		// makeBitcoinDataCall();
 	}
 
 	renderCurrencyIndicator(){
@@ -38,7 +38,9 @@ class App extends Component {
 	}
 
     render() {
-    	console.log('value prop ', this.props.bitcoin);
+
+    	const bitcoinPrice = parseFloat(this.props.bitcoin.last_price).toFixed(2)
+
         return (
         	<div className={styles.container}>
         		<h3 className={styles.text}>Account Balance</h3>
@@ -53,7 +55,7 @@ class App extends Component {
         		<p className={styles.text}>For</p>
 
         		<label className={styles.coinTrade}>BTC</label>
-        		<p className={styles.coinTrade}>Display Quote</p>
+        		<p className={styles.coinTrade}>1 USD = {bitcoinPrice} BTC</p>
 
         		<input type="button" value="Trade" onClick ={this.onTradeClick.bind(this)} />
 
@@ -64,7 +66,7 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
 	return {
-		bitcoin: state.bitcoin
+		bitcoin: state.bitcoin.data
 	};
 }
 

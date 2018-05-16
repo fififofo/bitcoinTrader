@@ -8,6 +8,7 @@ To get this repo simply run:
 > git clone https://github.com/felipeballesteros/BitcoinTrader.git
 > cd BitcoinTrader
 > npm install
+> npm run start-server
 > npm start
 ```
 
@@ -16,6 +17,7 @@ To run the application, open your terminal, change to the project directory, and
 
 ```
 > npm install
+> npm run start
 > npm start
 ```
 
