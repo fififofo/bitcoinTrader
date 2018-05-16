@@ -36,7 +36,7 @@ export class App extends Component {
 	}
 
     render() {
-    	console.log('value prop ', this.props.btcValueProp);
+    	console.log('value prop ', this.props.bitcoin);
         return (
         	<div className={styles.container}>
         		<h3 className={styles.text}>Account Balance</h3>
