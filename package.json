@@ -19,11 +19,9 @@
         "chai": "^3.5.0",
         "chai-jquery": "^2.0.0",
         "css-loader": "0.23.1",
-        "jquery": "^2.2.1",
+        "jquery": "^3.0.0",
         "jsdom": "^8.1.0",
         "mocha": "^2.4.5",
-        "node-sass": "^4.9.0",
-        "sass-loader": "^7.0.1",
         "style-loader": "0.13.1",
         "webpack": "^1.15.0",
         "webpack-combine-loaders": "2.0.0",
@@ -35,7 +33,6 @@
         "react": "16.3.2",
         "react-dom": "16.3.2",
         "react-redux": "5.0.7",
-        "react-router": "^2.0.1",
         "redux": "4.0.0"
     }
 }
