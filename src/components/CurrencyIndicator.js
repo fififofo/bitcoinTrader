@@ -15,7 +15,7 @@ export function CurrencyIndicator(props: Object): React.Component {
 
     		<div className={styles.btcIndicator}>
     			<div className={styles.currencyName}>BTC</div>
-    			<div className={styles.currencyAmount}>{props.btcValue.toFixed(8)}</div>
+    			<div className={styles.currencyAmount}>{props.btcValue}</div>
     		</div>
 
     	</div>

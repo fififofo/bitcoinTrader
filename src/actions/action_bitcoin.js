@@ -19,15 +19,14 @@ export function makeBitcoinDataCall(){
 function fetchBitcoinDataAndUpdateStore(dispatch) {
 	return new Promise((resolve, reject) => {
 		fetch('http://localhost:3001/btcusd')
-		 .then (resp => resp.json())
-		 .then ((resp) => {
-		 	console.log(resp);
-		 	dispatch(fetch_bitcoinData(resp));
-		 	resolve();
-		 })
-		 .catch ((error) => {
-		 	console.log(error);
-		 	reject(error.toString());
+			.then (resp => resp.json())
+			.then ((resp) => {
+		 		dispatch(fetch_bitcoinData(resp));
+		 		resolve();
+		 	})
+		 	.catch ((error) => {
+		 		console.log(error);
+		 		reject(error.toString());
 		 });
 	});
 }

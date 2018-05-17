@@ -14,32 +14,66 @@ class App extends Component {
 
 		this.state = {
 			usdValue: 156.12,
-			btcValue: 0.00000000
+			btcValue: 0.00000000,
+			tradeValueInUsd: 0
 		}
 	}
 
 	componentDidMount(){
 		this.props.makeBitcoinDataCall(this.props.bitcoin);
-		// makeBitcoinDataCall();
 	}
 
 	renderCurrencyIndicator(){
 
 		const currencyProps = {
-			usdValue: this.state.usdValue,
-			btcValue: this.state.btcValue
+			usdValue: this.formatUsd(this.state.usdValue, true),
+			btcValue: this.formatBtc(this.state.btcValue, true)
 		}
 
 		return <CurrencyIndicator {...currencyProps}/>
 	}
 
 	onTradeClick(event){
-		console.log('Button pressed!');
+		event.preventDefault();
+
+		if (event.target.value === ""){
+			event.target.value = 0;
+		}
+
+		this.setState({
+      		usdValue: this.state.usdValue - this.formatUsd(this.state.tradeValueInUsd),
+      		btcValue: this.state.btcValue + this.formatUsd(this.state.tradeValueInUsd) / this.props.bitcoin.last_price
+    	});
+	}
+
+	updateInputValue(event){
+
+		event.preventDefault();
+
+		this.setState({
+      		tradeValueInUsd: event.target.value
+    	});
+	}
+
+	formatBtc(numberString, stringFormat = false){
+		if (stringFormat){
+			return parseFloat(numberString).toFixed(8);
+		}
+
+		return parseFloat(parseFloat(numberString).toFixed(8));
+	}
+
+	formatUsd(numberString, stringFormat = false){
+		if (stringFormat){
+			return parseFloat(Math.round(numberString * 100) / 100).toFixed(2)
+		}
+
+		return parseFloat(parseFloat(Math.round(numberString * 100) / 100).toFixed(2))
 	}
 
     render() {
-
-    	const bitcoinPrice = parseFloat(this.props.bitcoin.last_price).toFixed(2)
+    	const bitcoinPrice = this.props.bitcoin.last_price;
+    	const bitcoinInUs = bitcoinPrice ? this.formatUsd(bitcoinPrice, true) : '0.00';
 
         return (
         	<div className={styles.container}>
@@ -50,12 +84,12 @@ class App extends Component {
         		<h2 className={styles.text}>Trade</h2>
 
         		<label className={styles.coinTrade}>USD</label>
-        		<input type="text" placeholder='Enter your amount'/>
+        		<input type="text" placeholder='Enter your amount' onChange={ event => this.updateInputValue(event) }/>
 
         		<p className={styles.text}>For</p>
 
         		<label className={styles.coinTrade}>BTC</label>
-        		<p className={styles.coinTrade}>1 USD = {bitcoinPrice} BTC</p>
+        		<p className={styles.coinTrade}>1 BTC = {bitcoinInUs} USD</p>
 
         		<input type="button" value="Trade" onClick ={this.onTradeClick.bind(this)} />
 
