@@ -1,40 +1,41 @@
-@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro");
 
-.container{
-	padding: 10px 40px 40px 40px;
-	font-family: 'Source Sans Pro', Arial, Helvetica, sans-serif;
-	background-color: #eee;
-	width: 220px;
-	font-size: 15px;
+.container {
+    padding: 10px 40px 40px 40px;
+    font-family: "Source Sans Pro", Arial, Helvetica, sans-serif;
+    background-color: #eee;
+    width: 220px;
+    font-size: 15px;
 }
 
-.header, .text{
-	font-size: 13px;
-	font-weight: normal;
-	margin-left: 20px;
-	display: block;
+.header,
+.text {
+    font-size: 13px;
+    font-weight: normal;
+    margin-left: 20px;
+    display: block;
 }
 
-.coinTrade{
-	display:block;
-	padding: 10px;
-	border: 1px solid #999;
+.coinTrade {
+    display: block;
+    padding: 10px;
+    border: 1px solid #999;
 }
 
-input[type=text]{
-	font-family: 'Source Sans Pro', Arial, Helvetica, sans-serif;
-	background: none;
+input[type="text"] {
+    font-family: "Source Sans Pro", Arial, Helvetica, sans-serif;
+    background: none;
     border: 1px solid #999;
     display: block;
     width: inherit;
     font-size: 15px;
     padding: 10px;
     box-sizing: border-box;
-    margin-top:1em;
+    margin-top: 1em;
 }
 
-input[type=button]{
-	background: #2838d0;
+input[type="button"] {
+    background: #2838d0;
     border: none;
     display: block;
     font-size: 15px;
@@ -44,5 +45,4 @@ input[type=button]{
     color: white;
     width: 100%;
     box-sizing: content-box;
-
 }

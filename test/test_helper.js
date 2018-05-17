@@ -1,24 +1,33 @@
-import _$ from 'jquery';
-import React from 'react';
-import ReactDOM from 'react-dom';
-import TestUtils from 'react-dom/test-utils';
-import jsdom from 'jsdom';
-import chai, { expect } from 'chai';
-import chaiJquery from 'chai-jquery';
-import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-import reducers from '../src/reducers';
+import _$ from "jquery";
+import React from "react";
+import ReactDOM from "react-dom";
+import TestUtils from "react-dom/test-utils";
+import jsdom from "jsdom";
+import chai, { expect } from "chai";
+import chaiJquery from "chai-jquery";
+import { Provider } from "react-redux";
+import { createStore, applyMiddleware, compose } from "redux";
+import reducers from "../src/reducers";
+import thunk from "redux-thunk";
 
-global.document = jsdom.jsdom('<!doctype html><html><body></body></html>');
+global.document = jsdom.jsdom("<!doctype html><html><body></body></html>");
 global.window = global.document.defaultView;
 global.navigator = global.window.navigator;
 const $ = _$(window);
 
 chaiJquery(chai, chai.util, $);
 
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
 function renderComponent(ComponentClass, props = {}, state = {}) {
-  const componentInstance =  TestUtils.renderIntoDocument(
-    <Provider store={createStore(reducers, state)}>
+  const componentInstance = TestUtils.renderIntoDocument(
+    <Provider
+      store={createStore(
+        reducers,
+        state,
+        composeEnhancers(applyMiddleware(thunk))
+      )}
+    >
       <ComponentClass {...props} />
     </Provider>
   );
@@ -33,4 +42,4 @@ $.fn.simulate = function(eventName, value) {
   TestUtils.Simulate[eventName](this[0]);
 };
 
-export {renderComponent, expect};
+export { renderComponent, expect };
