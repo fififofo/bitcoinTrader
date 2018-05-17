@@ -46,3 +46,12 @@ input[type="button"] {
     width: 100%;
     box-sizing: content-box;
 }
+
+input[type="button"]:disabled{
+    background: #8990ce;
+}
+
+.warning{
+    color: red;
+    font-size:12px;
+}
