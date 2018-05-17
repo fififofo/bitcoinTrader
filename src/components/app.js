@@ -1,114 +1,138 @@
-import React, { Component } from 'react';
-import CurrencyIndicator from './CurrencyIndicator';
-import { connect } from 'react-redux';
-import { makeBitcoinDataCall } from '../actions/action_bitcoin';
-import { bindActionCreators } from 'redux';
+import React, { Component } from "react";
+import CurrencyIndicator from "./CurrencyIndicator";
+import { connect } from "react-redux";
+import { makeBitcoinDataCall } from "../actions/action_bitcoin";
+import { bindActionCreators } from "redux";
 
 // Styles
-import styles from './App.css';
+import styles from "./App.css";
 
 class App extends Component {
-
 	constructor(props) {
 		super(props);
 
 		this.state = {
 			usdValue: 156.12,
-			btcValue: 0.00000000,
+			btcValue: 0.0,
 			tradeValueInUsd: 0
-		}
+		};
 	}
 
-	componentDidMount(){
+	componentDidMount() {
 		this.props.makeBitcoinDataCall(this.props.bitcoin);
 	}
 
-	renderCurrencyIndicator(){
-
+	renderCurrencyIndicator() {
 		const currencyProps = {
 			usdValue: this.formatUsd(this.state.usdValue, true),
 			btcValue: this.formatBtc(this.state.btcValue, true)
-		}
+		};
 
-		return <CurrencyIndicator {...currencyProps}/>
+		return <CurrencyIndicator {...currencyProps} />;
 	}
 
-	onTradeClick(event){
+	onTradeClick(event) {
 		event.preventDefault();
 
-		if (event.target.value === ""){
+		if (event.target.value === "") {
 			event.target.value = 0;
 		}
 
 		this.setState({
-      		usdValue: this.state.usdValue - this.formatUsd(this.state.tradeValueInUsd),
-      		btcValue: this.state.btcValue + this.formatUsd(this.state.tradeValueInUsd) / this.props.bitcoin.last_price
-    	});
+			usdValue:
+				this.state.usdValue -
+				this.formatUsd(this.state.tradeValueInUsd),
+			btcValue:
+				this.state.btcValue +
+				this.formatUsd(this.state.tradeValueInUsd) /
+					this.props.bitcoin.last_price
+		});
 	}
 
-	updateInputValue(event){
-
+	updateInputValue(event) {
 		event.preventDefault();
 
+		const tradeValue = event.target.value === "" ? "0" : event.target.value;
+
 		this.setState({
-      		tradeValueInUsd: event.target.value
-    	});
+			tradeValueInUsd: tradeValue
+		});
 	}
 
-	formatBtc(numberString, stringFormat = false){
-		if (stringFormat){
+	formatBtc(numberString, stringFormat = false) {
+		if (stringFormat) {
 			return parseFloat(numberString).toFixed(8);
 		}
 
 		return parseFloat(parseFloat(numberString).toFixed(8));
 	}
 
-	formatUsd(numberString, stringFormat = false){
-		if (stringFormat){
-			return parseFloat(Math.round(numberString * 100) / 100).toFixed(2)
+	formatUsd(numberString, stringFormat = false) {
+		if (stringFormat) {
+			return parseFloat(Math.round(numberString * 100) / 100).toFixed(2);
 		}
 
-		return parseFloat(parseFloat(Math.round(numberString * 100) / 100).toFixed(2))
+		return parseFloat(
+			parseFloat(Math.round(numberString * 100) / 100).toFixed(2)
+		);
 	}
 
-    render() {
-    	const bitcoinPrice = this.props.bitcoin.last_price;
-    	const bitcoinInUs = bitcoinPrice ? this.formatUsd(bitcoinPrice, true) : '0.00';
+	getQuote(){
+		const bitcoinPrice = this.props.bitcoin.last_price;
+		let quote = 'Display Quote';
 
-        return (
-        	<div className={styles.container}>
-        		<h3 className={styles.text}>Account Balance</h3>
+		if(bitcoinPrice && this.state.tradeValueInUsd !== "0"){
+			const usdToBtc = this.formatBtc( ( this.state.tradeValueInUsd / bitcoinPrice), true );
+			const currentBtc = this.formatUsd(this.state.tradeValueInUsd, true );
+			quote = `${currentBtc} USD = ${usdToBtc} BTC`
+		}
 
-        		{ this.renderCurrencyIndicator() }
+		return quote;
+	}
 
-        		<h2 className={styles.text}>Trade</h2>
+	render() {
+		const bitcoinPrice = this.props.bitcoin.last_price;
+		const bitcoinInUs = bitcoinPrice? this.formatUsd(bitcoinPrice, true) : "0.00";
 
-        		<label className={styles.coinTrade}>USD</label>
-        		<input type="text" placeholder='Enter your amount' onChange={ event => this.updateInputValue(event) }/>
 
-        		<p className={styles.text}>For</p>
+		return (
+			<div className={styles.container}>
+				<h3 className={styles.text}>Account Balance</h3>
 
-        		<label className={styles.coinTrade}>BTC</label>
-        		<p className={styles.coinTrade}>1 BTC = {bitcoinInUs} USD</p>
+				{this.renderCurrencyIndicator()}
 
-        		<input type="button" value="Trade" onClick ={this.onTradeClick.bind(this)} />
+				<h2 className={styles.text}>Trade</h2>
 
-        	</div>
-        );
-    }
+				<label className={styles.coinTrade}>USD</label>
+				<input
+					type="text"
+					placeholder="Enter your amount"
+					onChange={event => this.updateInputValue(event)}
+				/>
+
+				<p className={styles.text}>For</p>
+
+				<label className={styles.coinTrade}>BTC</label>
+
+				<p className={styles.coinTrade}>{this.getQuote()}</p>
+
+				<input type="button" value="Trade" onClick={this.onTradeClick.bind(this)}/>
+			</div>
+		);
+	}
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
 	return {
 		bitcoin: state.bitcoin.data
 	};
-}
+};
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
 	return bindActionCreators(
 		{ makeBitcoinDataCall: makeBitcoinDataCall },
 		dispatch
 	);
-}
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default connect(mapStateToProps, mapDispatchToProps)(App);
