@@ -49,7 +49,7 @@ class App extends Component {
 		let warningText = "";
 
 		if (!this.state.allowed){
-			warningText = "**You don't have enough funds";
+			warningText = "**Not enough funds";
 		}
 
 		return warningText;

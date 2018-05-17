@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from "prop-types";
 
 // Styles
 import styles from './CurrencyIndicator.css';
@@ -20,6 +21,18 @@ export function CurrencyIndicator(props: Object): React.Component {
 
     	</div>
     );
+
+}
+
+CurrencyIndicator.propTypes = {
+    usdValue: PropTypes.string,
+    btcValue: PropTypes.string
+
+}
+
+CurrencyIndicator.defaultProps = {
+    usdValue: "0",
+    btcValue: "0.00000000"
 
 }
 

@@ -26,3 +26,8 @@ Go to your browser and open the app at
 ```
 http://localhost:8080
 ```
+
+To Run small test suite:
+```
+npm test
+```

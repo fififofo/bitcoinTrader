@@ -22,6 +22,11 @@
     border: 1px solid #999;
 }
 
+.warning{
+    color: red;
+    font-size:12px;
+}
+
 input[type="text"] {
     font-family: "Source Sans Pro", Arial, Helvetica, sans-serif;
     background: none;
@@ -49,9 +54,4 @@ input[type="button"] {
 
 input[type="button"]:disabled{
     background: #8990ce;
-}
-
-.warning{
-    color: red;
-    font-size:12px;
 }

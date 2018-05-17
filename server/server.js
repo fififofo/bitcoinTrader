@@ -1,8 +1,8 @@
 
-const express = require('express')
+const express = require('express');
 const axios = require('axios');
-const app = express()
-const cors = require('cors')
+const app = express();
+const cors = require('cors');
 
 app.use(cors());
 
@@ -12,10 +12,10 @@ app.get('/btcusd', function (req, res) {
     .then((resp) => resp.data)
     .then((resp) => res.send(resp))
     .catch( (error) => {
-        console.log( error.toString() );
+        res.status(500).send({ error: 'Request has failed' })
     })
 })
 
 app.listen(3001, function () {
-  console.log('Server is connected to port 3001!');
+  console.log('Server is connected to port 3001');
 })
