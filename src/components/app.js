@@ -14,7 +14,7 @@ class App extends Component {
 		this.state = {
 			usdValue: 156.12,
 			btcValue: 0.0,
-			tradeValueInUsd: 0
+			tradeValueInUsd: "0"
 		};
 	}
 
@@ -34,19 +34,14 @@ class App extends Component {
 	onTradeClick(event) {
 		event.preventDefault();
 
-		if (event.target.value === "") {
-			event.target.value = 0;
-		}
-
 		this.setState({
-			usdValue:
-				this.state.usdValue -
-				this.formatUsd(this.state.tradeValueInUsd),
-			btcValue:
-				this.state.btcValue +
-				this.formatUsd(this.state.tradeValueInUsd) /
-					this.props.bitcoin.last_price
+			usdValue: this.state.usdValue - this.formatUsd(this.state.tradeValueInUsd),
+			btcValue: this.state.btcValue + this.formatUsd(this.state.tradeValueInUsd) / this.props.bitcoin.last_price,
+			tradeValueInUsd: "0"
 		});
+
+		// Reset USD amount
+		this.refs.amountInput.value = "";
 	}
 
 	updateInputValue(event) {
@@ -104,11 +99,7 @@ class App extends Component {
 				<h2 className={styles.text}>Trade</h2>
 
 				<label className={styles.coinTrade}>USD</label>
-				<input
-					type="text"
-					placeholder="Enter your amount"
-					onChange={event => this.updateInputValue(event)}
-				/>
+				<input type="text" ref="amountInput" placeholder="Enter your amount" onChange={event => this.updateInputValue(event)}/>
 
 				<p className={styles.text}>For</p>
 
