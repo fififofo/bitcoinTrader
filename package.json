@@ -25,7 +25,7 @@
         "express": "^4.17.1",
         "ignore-styles": "^5.0.1",
         "isomorphic-fetch": "^2.2.1",
-        "jquery": "^3.4.1",
+        "jquery": "^3.5.0",
         "jsdom": "^8.1.0",
         "mocha": "^2.4.5",
         "prop-types": "^15.7.2",
