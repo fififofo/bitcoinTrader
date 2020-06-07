@@ -13,7 +13,7 @@
     "author": "Felipe Ballesteros",
     "license": "ISC",
     "devDependencies": {
-        "axios": "^0.18.0",
+        "axios": "^0.18.1",
         "babel-core": "^6.2.1",
         "babel-loader": "^6.2.0",
         "babel-preset-es2015": "^6.1.18",
